@@ -54,11 +54,8 @@ PRODUCTS = [
  dict(id='encase', name='EnCase System', ko='인케이스 시스템', cat='Tools', q='EnCase', img=[0, 1],
       desc='핸들바 끝 속에 공구를 숨기는 시스템. 멀티툴과 체인 공구, 타이어 플러그를 늘 자전거에 싣고 다닙니다.',
       spec=[('MOUNT', 'Inside handlebar'), ('USE', 'Always-on-bike tools')]),
- dict(id='tekton', name='Tekton Tools', ko='텍톤 공구', cat='Tools', q='Tekton', img=[0, 1],
-      desc='작업대 위에서 매일 쓰는 육각 렌치와 공구 라인. 손에 쥐는 감각과 정확한 맞물림을 위해 만들었습니다.',
-      spec=[('TYPE', 'Workshop tools'), ('USE', 'Home · Pro shop')]),
  # Cages & Mounts
- dict(id='morse', name='Morse Cage', ko='모스 케이지', cat='Cages & Mounts', q='Morse cage', img=[0, 1],
+ dict(id='morse', name='Morse Cage', ko='모스 케이지', cat='Cages & Mounts', q='Morse water bottle cage', img=[0, 1],
       desc='슬롯 마운트로 케이지를 위아래로 옮길 수 있는 물병 케이지. 작은 프레임과 프레임 백 아래에서도 물병을 쉽게 뺍니다.',
       spec=[('MOUNT', 'Slotted · Adjustable'), ('MATERIAL', 'Aluminum')]),
  dict(id='brad', name='B-RAD System', ko='비래드 시스템', cat='Cages & Mounts', q='B-RAD', img=[0, 1],

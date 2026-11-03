@@ -23,6 +23,11 @@ wolftooth.rubiworkshop.com 원페이지 정적 사이트 (GitHub Pages). quoc.ru
 - 이미 받은 파일은 건너뜁니다. 교체할 때는 파일을 지우거나 같은 경로에 덮어씁니다 (루비 촬영본으로 교체 가능).
 - 이미지가 없으면 제품 카드는 제품명 자리표시가 나오고, `images/life/` 사진 자리(.opt)는 페이지에서 숨겨집니다.
 
+## 히어로 슬라이드
+- 데스크톱은 회색(#e9e9e7) 배경에 어두운 글자, 모바일은 위쪽 어두운 카피 영역 + 아래 회색 이미지 영역입니다.
+- 제품 이미지: `<div class="rh-media cut">` + 누끼 딴 `images/hero/<id>.webp`. 새로 만들 때는 `python3 tools/cutout.py <제품id>` (images/p/<id>-1.jpg의 흰 배경을 지워 저장, `pip install pillow numpy scipy` 필요).
+- 라이프스타일 이미지: `<div class="rh-media life">` + 일반 사진. 가장자리가 회색 배경으로 흐려지도록 마스크가 적용됩니다.
+
 ## 문구 수정
 1. 섹션 문구는 `index.src.html`, 제품 카드·라인업 문구는 `tools/build.py`의 `PRODUCTS`에서 고칩니다.
 2. `python3 tools/build.py` 를 실행합니다.

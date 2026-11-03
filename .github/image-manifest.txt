@@ -20,8 +20,8 @@ Pack+Pliers 1 images/p/packpliers-2.jpg
 8-Bit 1 images/p/8bit-2.jpg
 EnCase 0 images/p/encase-1.jpg
 EnCase 1 images/p/encase-2.jpg
-Morse+water+bottle+cage 0 images/p/morse-1.jpg
-Morse+water+bottle+cage 1 images/p/morse-2.jpg
+handle:morse-cargo-cage 0 images/p/morse-1.jpg
+handle:morse-cargo-cage 1 images/p/morse-2.jpg
 B-RAD 0 images/p/brad-1.jpg
 B-RAD 1 images/p/brad-2.jpg
 Hydra+hub 0 images/p/hydra-1.jpg

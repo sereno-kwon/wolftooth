@@ -55,9 +55,9 @@ PRODUCTS = [
       desc='핸들바 끝 속에 공구를 숨기는 시스템. 멀티툴과 체인 공구, 타이어 플러그를 늘 자전거에 싣고 다닙니다.',
       spec=[('MOUNT', 'Inside handlebar'), ('USE', 'Always-on-bike tools')]),
  # Cages & Mounts
- dict(id='morse', name='Morse Cage', ko='모스 케이지', cat='Cages & Mounts', q='Morse water bottle cage', img=[0, 1],
-      desc='슬롯 마운트로 케이지를 위아래로 옮길 수 있는 물병 케이지. 작은 프레임과 프레임 백 아래에서도 물병을 쉽게 뺍니다.',
-      spec=[('MOUNT', 'Slotted · Adjustable'), ('MATERIAL', 'Aluminum')]),
+ dict(id='morse', name='Morse Cargo Cage', ko='모스 카고 케이지', cat='Cages & Mounts', q='handle:morse-cargo-cage', img=[0, 1],
+      desc='슬롯 마운트로 위치를 조절하는 카고 케이지. 드라이백과 침낭, 연료병을 포크나 프레임에 실어 바이크패킹 짐을 나눠 담습니다.',
+      spec=[('MOUNT', 'Slotted · Adjustable'), ('USE', 'Bikepacking cargo')]),
  dict(id='brad', name='B-RAD System', ko='비래드 시스템', cat='Cages & Mounts', q='B-RAD', img=[0, 1],
       desc='물병 보스를 옮기고, 늘리고, 더하는 마운팅 시스템. 펌프와 튜브, 공구, 두 번째 물병까지 원하는 자리에 답니다.',
       spec=[('TYPE', 'Mounting system'), ('USE', 'Bottles · Tools · Gear')]),

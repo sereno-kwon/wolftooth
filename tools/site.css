@@ -1,0 +1,42 @@
+/* 워드마크 로고 (이미지 로고가 생기면 images/logo.png로 교체 가능) */
+.logo.word{height:auto;font-size:15px;line-height:20px;letter-spacing:.14em;text-transform:uppercase;white-space:nowrap}
+.logo.word i{font-style:normal;color:var(--muted);margin-left:.5em;letter-spacing:.08em;font-size:12px}
+
+/* 제품 컷: 흰 배경 제품 사진을 잘리지 않게 */
+.cell figure.pd,.shots .pd{background:#fff;cursor:zoom-in}
+.cell figure.pd img{object-fit:contain;padding:10%}
+.cell .link{margin-top:24px;align-self:flex-start}
+.cell dd{white-space:normal}
+
+/* 이미지가 아직 없을 때: 제품 컷은 이름 자리표시, 선택 사진(.opt)은 통째로 숨김 */
+figure.noimg{position:relative;background:var(--surface)!important}
+figure.noimg img{visibility:hidden}
+figure.noimg::after{content:attr(data-label);position:absolute;inset:0;display:grid;place-items:center;padding:24px;text-align:center;font-size:12px;letter-spacing:var(--ls-label);text-transform:uppercase;color:var(--muted)}
+.opt.noimg,.opt:has(.noimg){display:none!important}
+
+/* 히어로: 제품 스테이지 슬라이드 */
+.rh-media.pd-stage{inset:0 0 clamp(88px,9vw,120px) 48%;background:#f3f3f1}
+.rh-media.pd-stage img{object-fit:contain;padding:8% 10%;transform:scale(1.03)}
+.rh-slide.is-active .rh-media.pd-stage img{transform:scale(1)}
+.rh-media.pd-stage.noimg{display:none}
+@media (max-width:767px){.rh-media.pd-stage{inset:44% 0 76px}.rh-media.pd-stage img{padding:8%}}
+
+/* 아노다이징 컬러 */
+.swatches{display:grid;grid-template-columns:repeat(6,1fr);border-top:1px solid var(--fg)}
+.swatches li{list-style:none;padding:20px 16px 20px 0;border-bottom:1px solid var(--line)}
+.swatches i{display:block;aspect-ratio:1;border-radius:50%;max-width:72px;margin-bottom:14px;background:var(--c);box-shadow:inset 0 0 0 1px rgba(0,0,0,.08),inset -8px -10px 18px rgba(0,0,0,.18),inset 8px 8px 14px rgba(255,255,255,.28)}
+.swatches b{display:block;font-size:14px;line-height:20px}
+.swatches span{display:block;font-size:12px;line-height:16px;color:var(--muted);letter-spacing:var(--ls-label)}
+.swatches{padding:0;margin:0}
+@media (max-width:860px){.swatches{grid-template-columns:repeat(3,1fr)}}
+
+/* 호환성 표 */
+table.size.compat{min-width:720px}
+table.size.compat td,table.size.compat th{text-align:left;white-space:normal}
+table.size.compat tbody th{min-width:140px;color:var(--fg)}
+table.size.compat td{color:var(--muted)}
+
+/* 라인업 리스트: 오른쪽은 한글 제품명 */
+.range a{grid-template-columns:48px 1.1fr 1.6fr 180px 24px}
+.range dl{display:block}
+.range dd{color:var(--muted)}

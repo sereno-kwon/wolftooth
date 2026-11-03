@@ -1,0 +1,70 @@
+name: Fetch images from Wolf Tooth store
+
+# .github/image-manifest.txt 에 적힌 이미지를 받아 images/ 폴더에 커밋합니다.
+# 형식: <검색어 | handle:제품주소 | https://이미지주소> <이미지 번호(0부터)> <저장 경로>  (한 줄에 하나, # 은 주석)
+# 검색어는 울프투스 공식 스토어(Shopify)에서 찾아 첫 번째 제품의 이미지를 씁니다.
+on:
+  push:
+    branches: [main]
+    paths: [.github/image-manifest.txt, .github/workflows/fetch-images.yml]
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  fetch:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Download
+        shell: python
+        run: |
+          import json, os, sys, urllib.parse, urllib.request
+          BASE = 'https://www.wolftoothcomponents.com'
+          UA = {'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/130.0 Safari/537.36',
+                'Accept': 'application/json,image/*;q=0.9,*/*;q=0.5', 'Referer': BASE + '/'}
+          def get(url):
+              with urllib.request.urlopen(urllib.request.Request(url, headers=UA), timeout=30) as r:
+                  return r.read()
+          cache, fail = {}, 0
+          def product(key):
+              if key in cache: return cache[key]
+              if key.startswith('handle:'):
+                  handle = key[7:]
+              else:
+                  q = urllib.parse.quote(key.replace('+', ' '))
+                  res = json.loads(get(f'{BASE}/search/suggest.json?q={q}&resources[type]=product&resources[limit]=1'))
+                  handle = res['resources']['results']['products'][0]['handle']
+              p = json.loads(get(f'{BASE}/products/{handle}.json'))['product']
+              print(f'      {key} -> {handle} ({len(p["images"])} images)')
+              cache[key] = p
+              return p
+          for line in open('.github/image-manifest.txt'):
+              line = line.strip()
+              if not line or line.startswith('#'): continue
+              src, idx, dest = line.split()[:3]
+              if os.path.exists(dest) and os.path.getsize(dest) > 0:
+                  print('skip ', dest); continue
+              try:
+                  if src.startswith('http'):
+                      url = src
+                  else:
+                      imgs = product(src)['images']
+                      url = imgs[min(int(idx), len(imgs) - 1)]['src']
+                      url += ('&' if '?' in url else '?') + 'width=1600'
+                  data = get(url)
+                  os.makedirs(os.path.dirname(dest), exist_ok=True)
+                  open(dest, 'wb').write(data)
+                  print(f'ok    {dest} {len(data)} bytes')
+              except Exception as e:
+                  print(f'FAIL  {src} {idx} {dest}: {e}'); fail = 1
+          sys.exit(fail)
+      - name: Commit
+        if: always()
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898299+github-actions[bot]@users.noreply.github.com"
+          git add images
+          git diff --cached --quiet && echo "no changes" || git commit -m "Add images from Wolf Tooth store"
+          git push
